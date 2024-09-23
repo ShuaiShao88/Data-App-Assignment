@@ -16,14 +16,14 @@ selected_category = st.selectbox("Select a Category", categories)
 filtered_df = df[df['Category'] == selected_category]
 
 # Add a multi-select for Sub-Category within the selected Category
-sub_categories = filtered_df['Sub-Category'].unique()
-selected_sub_categories = st.multiselect("Select Sub-Categories", sub_categories, default=sub_categories)
+sub_categories = filtered_df['Sub_Category'].unique()
+selected_sub_categories = st.multiselect("Select Sub_Categories", sub_categories, default=sub_categories)
 
 # Filter data based on the selected sub-categories
-filtered_sub_df = filtered_df[filtered_df['Sub-Category'].isin(selected_sub_categories)]
+filtered_sub_df = filtered_df[filtered_df['Sub_Category'].isin(selected_sub_categories)]
 
 # Line chart of sales for the selected sub-categories
-st.write(f"### Sales Data for {selected_category} - Selected Sub-Categories")
+st.write(f"### Sales Data for {selected_category} - Selected Sub_Categories")
 sales_by_date = filtered_sub_df.groupby('Order_Date')['Sales'].sum()
 st.line_chart(sales_by_date)
 
@@ -38,7 +38,7 @@ overall_total_profit = df['Profit'].sum()
 overall_profit_margin = (overall_total_profit / overall_total_sales) * 100 if overall_total_sales > 0 else 0
 
 # Show metrics with delta for profit margin
-st.write("### Metrics for Selected Sub-Categories")
+st.write("### Metrics for Selected Sub_Categories")
 st.metric("Total Sales", f"${total_sales:,.2f}")
 st.metric("Total Profit", f"${total_profit:,.2f}")
 st.metric(
